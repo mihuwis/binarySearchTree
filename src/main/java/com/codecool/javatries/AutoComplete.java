@@ -21,10 +21,13 @@ public class AutoComplete {
         TrieDataNode current = root;
         for (int i = 0; i < wordToAdd.length() ; i++) {
             Character letter = wordToAdd.charAt(i);
-
             TrieDataNode child = new TrieDataNode(letter);
-            current.setMapOfChilds(wordToAdd.charAt(i), child);
-            current = child;
+//TODO
+//            Character uperLetter = Character.toUpperCase(letter);
+//            Character lowerLetter = Character.toLowerCase(letter);
+//            current.setMapOfChilds(uperLetter, child);
+//            current.setMapOfChilds(lowerLetter, child);
+//            current = child;
 
         }
         endWord(current);
@@ -43,9 +46,41 @@ public class AutoComplete {
      */
     public List<String> autoComplete(String baseChars) {
         List<String> words = new ArrayList<>();
+        TrieDataNode current = root;
         String word = "";
-        words.add(baseChars);
-        // TODO
+        boolean endOfWordReached = false;
+
+        for (int i = 0; i < baseChars.length(); i++){
+            Character baseChar = baseChars.charAt(i);
+//            String upperBaseChar = Character.toString(baseChars.charAt(i)).toUpperCase();
+//            String lowerBaseChar = Character.toString(baseChars.charAt(i)).toLowerCase();
+//
+            if(current.getMapOfChilds().containsKey(baseChar)){
+                TrieDataNode child = current.getMapOfChilds().get(baseChar);
+                word += child.getData();
+                current = child;
+            } else {
+                return words;
+            }
+        }
+
+        while (!endOfWordReached){
+            for(Character letter : current.getMapOfChilds().keySet()) {
+                // here will be if statement. but in test there is only one key
+                TrieDataNode child = current.getMapOfChilds().get(letter);
+                if (child.getData() == '.'){
+                    words.add(word);
+                    endOfWordReached = true;
+
+                } else {
+                    word += child.getData();
+                }
+                current = child;
+
+            }
+        }
+
+
         return words;
     }
 
