@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -21,7 +23,19 @@ public class Main {
         // Try to write tests to verify your code!
         System.out.println(ac.autoComplete("spectro"));
         System.out.println("done");
-        System.out.println("TEST");
+
+        //---------------------------------------------------------------------
+
+//        Map <Character, Integer> myMap = new HashMap<>();
+//
+//        myMap.put('a', 10);
+//        myMap.put('.', 12);
+//        myMap.put('c', 13);
+//        myMap.put('d', 14);
+//
+//        if (myMap.keySet().contains('.')){
+//            System.out.println(myMap.get('.'));
+//        }
 
     }
 }

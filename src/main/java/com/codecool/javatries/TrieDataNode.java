@@ -1,5 +1,6 @@
 package com.codecool.javatries;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ public class TrieDataNode {
      */
     public TrieDataNode(char data) {
         this.data = data;
+        mapOfChilds = new HashMap<>();
     }
 
     public char getData() {
