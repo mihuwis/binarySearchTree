@@ -1,9 +1,12 @@
 package com.codecool.javatries;
 
+import java.util.List;
+import java.util.Map;
+
 public class TrieDataNode {
 
     private char data;
-    // TODO add further members as needed
+    private Map<Character, List<Character>> nextLettersMap;
 
     /**
      * Initializes a TrieDataNode with its data
@@ -15,6 +18,10 @@ public class TrieDataNode {
 
     public char getData() {
         return data;
+    }
+
+    public Map<Character, List<Character>> getNextLettersMap() {
+        return nextLettersMap;
     }
 
     @Override
