@@ -24,6 +24,14 @@ public class TrieDataNode {
         return mapOfChilds;
     }
 
+    public void setData(char data) {
+        this.data = data;
+    }
+
+    public void setMapOfChilds(Character letter, TrieDataNode child ) {
+        this.mapOfChilds.put(letter, child);
+    }
+
     @Override
     public String toString() {
         return Character.toString(data);

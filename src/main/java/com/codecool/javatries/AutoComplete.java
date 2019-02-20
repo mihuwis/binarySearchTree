@@ -23,11 +23,14 @@ public class AutoComplete {
         for (int i = 0; i < wordToAdd.length() ; i++) {
             Character letter = wordToAdd.charAt(i);
 
-            if (root.getNextLettersMap().keySet().contains(letter)){
+            if (root.getMapOfChilds().keySet().contains(letter)){
                 // get this instance - root on this existing instance
 
             } else {
                 //create new instance - root on new
+                TrieDataNode child = new TrieDataNode(wordToAdd.charAt(i));
+                current.setMapOfChilds(wordToAdd.charAt(i), child);
+                current = child;
             }
         }
     }
