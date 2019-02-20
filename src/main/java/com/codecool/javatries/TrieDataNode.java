@@ -6,7 +6,7 @@ import java.util.Map;
 public class TrieDataNode {
 
     private char data;
-    private Map<Character, List<Character>> nextLettersMap;
+    private Map<Character, TrieDataNode> mapOfChilds;
 
     /**
      * Initializes a TrieDataNode with its data
@@ -20,8 +20,8 @@ public class TrieDataNode {
         return data;
     }
 
-    public Map<Character, List<Character>> getNextLettersMap() {
-        return nextLettersMap;
+    public Map<Character, TrieDataNode> getMapOfChilds() {
+        return mapOfChilds;
     }
 
     @Override
