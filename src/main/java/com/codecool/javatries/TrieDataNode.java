@@ -34,6 +34,21 @@ public class TrieDataNode {
         this.mapOfChilds.put(letter, child);
     }
 
+    public TrieDataNode getChild(Character letter) {
+        TrieDataNode child = mapOfChilds.get(letter);
+        if (child == null){
+            return mapOfChilds.get(opositeCaseChar(letter));
+        }
+        return child;
+    }
+
+    public Character opositeCaseChar (Character letter) {
+        if (Character.isUpperCase(letter)){
+            return Character.toLowerCase(letter);
+        }
+        return Character.toUpperCase(letter);
+    }
+
     @Override
     public String toString() {
         return Character.toString(data);
