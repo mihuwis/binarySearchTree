@@ -22,12 +22,9 @@ public class AutoComplete {
         for (int i = 0; i < wordToAdd.length() ; i++) {
             Character letter = wordToAdd.charAt(i);
             TrieDataNode child = new TrieDataNode(letter);
-//TODO
-//            Character uperLetter = Character.toUpperCase(letter);
-//            Character lowerLetter = Character.toLowerCase(letter);
-//            current.setMapOfChilds(uperLetter, child);
-//            current.setMapOfChilds(lowerLetter, child);
-//            current = child;
+
+            current.setMapOfChilds(letter, child);
+            current = child;
 
         }
         endWord(current);
@@ -47,16 +44,21 @@ public class AutoComplete {
     public List<String> autoComplete(String baseChars) {
         List<String> words = new ArrayList<>();
         TrieDataNode current = root;
+
         String word = "";
         boolean endOfWordReached = false;
 
+
         for (int i = 0; i < baseChars.length(); i++){
             Character baseChar = baseChars.charAt(i);
+            Character anotherBaseChar = convertChatToAnotherCase(baseChar);
 //            String upperBaseChar = Character.toString(baseChars.charAt(i)).toUpperCase();
 //            String lowerBaseChar = Character.toString(baseChars.charAt(i)).toLowerCase();
-//
-            if(current.getMapOfChilds().containsKey(baseChar)){
-                TrieDataNode child = current.getMapOfChilds().get(baseChar);
+
+
+            if(current.getMapOfChilds().containsKey(baseChar) || current.getMapOfChilds().containsKey(anotherBaseChar)){
+
+                TrieDataNode child = current.getChild(baseChar);
                 word += child.getData();
                 current = child;
             } else {
@@ -82,6 +84,13 @@ public class AutoComplete {
 
 
         return words;
+    }
+
+    private Character convertChatToAnotherCase(Character baseChar) {
+        if (Character.isUpperCase(baseChar)){
+            return Character.toLowerCase(baseChar);
+        }
+        return Character.toUpperCase(baseChar);
     }
 
     /**
